@@ -18,6 +18,21 @@ Ex:
 void Ex5(char *str){
 	//Your codes here
 	
+	int len = strlen(str);
+
+	for (int i = len / 2 - 1, j = len / 2; i >= 0, j < len; i--, j++)
+	{
+		if ((str[i] == '{' && str[j] == '}') || (str[i] == '[' && str[j] == ']') || (str[i] == '(' && str[j] == ')'))
+		{
+			continue;
+		}
+		else
+		{
+			printf("Invalid!");
+			return;
+		}
+	}
+	printf("Valid!");
 }
 
 int main(int argc, char *argv[]) {
