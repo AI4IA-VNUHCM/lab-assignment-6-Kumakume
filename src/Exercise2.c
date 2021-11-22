@@ -12,24 +12,24 @@ Ex:
 #include <math.h>
 #include <string.h>
 
-void Ex2(int n, char *str[], char a[])
+void Ex2(int n, char *str[], char temp[])
 {
 	//Your codes here
 	int i,j;
     for (i = 0; i < n; ++i) {
         for (j = i + 1; j < n; ++j) {
             if (strcmp(str[i], str[j]) > 0) {
-                strcpy(a, str[i]);
+                strcpy(temp, str[i]);
                 strcpy(str[i], str[j]);
-                strcpy(str[j], a);
+                strcpy(str[j], temp);
             }
         }
     }
     for(i=0;i<n;i++)
-      printf("%s ", str[i]);
+        printf("%s ", str[i]);
 }
 
-int main(int argc, char *argv[], char a[]) {
+int main(int argc, char *argv[], char temp[]) {
 	//testing variable, applying it to your algorithm for auto-evaluating
 	argc--;
 	char *testcase[argc];
@@ -38,7 +38,7 @@ int main(int argc, char *argv[], char a[]) {
 		testcase[i] = argv[i+1];
 	}
 	
-	Ex2(argc, testcase, a);
+	Ex2(argc, testcase, temp);
 	
 	return 0;
 }
