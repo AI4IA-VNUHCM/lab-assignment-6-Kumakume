@@ -16,7 +16,12 @@ Ex:
 
 void Ex4(char *str){
 	//Your codes here
-	printf("This one is already formatted!");
+	int count = 0;
+    for (int i = 0; str[i]; i++)
+        if (str[i] != '  ')
+            str[count++] = str[i];
+    str[count] = '\0';
+	printf("%s",str);
 }
 
 int main(int argc, char *argv[]) {
