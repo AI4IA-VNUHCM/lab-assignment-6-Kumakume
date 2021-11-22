@@ -12,24 +12,39 @@ Ex:
 #include <math.h>
 #include <string.h>
 
-void Ex2(int n, char *str[], char temp[])
+void Ex2(int n, char *str[])
 {
 	//Your codes here
-	//int i,j;
-    for (int i = 0; i < n; ++i) {
-        for (int j = i + 1; j < n; ++j) {
-            if (strcmp(str[i], str[j]) > 0) {
-                strcpy(temp, str[i]);
-                strcpy(str[i], str[j]);
-                strcpy(str[j], temp);
-            }
-        }
-    }
-    for(int i=0;i<n;i++)
-        printf("%s ", str[i]);
+	int order[n];
+
+	for(int i = 0; i < n; i++)
+		order[i] = i;
+
+	for(int i = 0; i < n; i++)
+		for(int j = i + 1; j < n; j++)
+		{
+			int a = 0;
+
+			while(str[order[i]][a] != '\0')
+			{
+				if(str[order[i]][a] > str[order[j]][a])
+				{
+					int temp = order[i];
+					order[i] = order[j];
+					order[j] = temp;
+					break;
+				}else if(str[order[i]][a] == str[order[j]][a]) 	
+					a++;
+				else
+					break;
+			}
+		}
+
+	for(int i = 0; i < n; i++)
+		printf("%s ", str[order[i]]);
 }
 
-int main(int argc, char *argv[], char temp[]) {
+int main(int argc, char *argv[]) {
 	//testing variable, applying it to your algorithm for auto-evaluating
 	argc--;
 	char *testcase[argc];
@@ -38,7 +53,7 @@ int main(int argc, char *argv[], char temp[]) {
 		testcase[i] = argv[i+1];
 	}
 	
-	Ex2(argc, testcase, temp);
+	Ex2(argc, testcase);
 	
 	return 0;
 }

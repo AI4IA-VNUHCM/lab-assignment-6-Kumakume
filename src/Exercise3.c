@@ -15,26 +15,29 @@ Ex:
 
 void Ex3(char *str){
 	//Your codes here
-	//int string[] = &str;
-	int i = 0, letters = 0, longest = 0, shortest = 0;
-
-start:
-
-    for (; str[i] !=' '; i++) {
-        letters++;  
-    }
-
-    if (letters >= longest)
-        longest = letters;
-    /*if (letters <= shortest) 
-	    shortest = letters;*/
-    if (str[i] == ' ') {
-        letters = 0;
-        i++;
-        goto start;
-    }
-	//printf("Shortest word: %d",shortest);
-    printf("Longest word: %d",longest);
+   int StrLength = length(str);
+   int startIndex = 0, endIndex = 0;
+   int minLength = StrLength, maxLength = 0, currentLength;
+   char smallest, largest;
+   while (endIndex <= StrLength){
+      if (str[endIndex] != '\0' && str[endIndex] != ' ')
+         endIndex++;
+      else{
+         currentLength = endIndex - startIndex;
+         if (currentLength < minLength){
+            smallest = substr(str, startIndex, currentLength);
+            minLength = currentLength;
+         }
+         if (currentLength > maxLength){
+            largest = substr(str, startIndex, currentLength);
+            maxLength = currentLength;
+         }
+         endIndex++;
+         startIndex = endIndex;
+      }
+   }
+   printf("Shortest word: %s",smallest);
+   printf("Longest word: %s",largest);
 }
 
 int main(int argc, char *argv[]) {
