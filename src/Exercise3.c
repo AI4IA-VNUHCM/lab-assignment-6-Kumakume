@@ -15,31 +15,38 @@ Ex:
 
 void Ex3(char *str){
 	//Your codes here
-   int StrLength = length(str);
-   int startIndex = 0, endIndex = 0;
-   int minLength = StrLength, maxLength = 0, currentLength;
-   char smallest, largest;
-   while (endIndex <= StrLength){
-      if (str[endIndex] != '\0' && str[endIndex] != ' ')
-         endIndex++;
-      else{
-         currentLength = endIndex - startIndex;
-         if (currentLength < minLength){
-            smallest = substr(str, startIndex, currentLength);
-            minLength = currentLength;
-         }
-         if (currentLength > maxLength){
-            largest = substr(str, startIndex, currentLength);
-            maxLength = currentLength;
-         }
-         endIndex++;
-         startIndex = endIndex;
-      }
-   }
-   printf("Shortest word: %s",smallest);
-   printf("Longest word: %s",largest);
+	int i = 0, j = 0, flg = 0;
+	char word[50], mx[50], mn[50], c;
+    str[i - 1] = '\0';
+    for (i = 0; i < strlen(str); i++)
+    {
+        while (i < strlen(str) && str[i] != ' ')
+        {
+            word[j++] = str[i++];
+        }
+        if (j != 0)
+        {
+            word[j] = '\0';
+            if (!flg)
+            {
+                flg = !flg;
+                strcpy(mx, word);
+                strcpy(mn, word);
+            }
+            if (strlen(word) > strlen(mx))
+            {
+                strcpy(mx, word);
+            }
+            if (strlen(word) < strlen(mn))
+            {
+                strcpy(mn, word);
+            }
+            j = 0;
+        }
+    }
+    printf("Shortest word: %s",mn);
+	printf("\nLongest word: %s",mx);
 }
-
 int main(int argc, char *argv[]) {
 	//testing variable, applying it to your algorithm for auto-evaluating
 	char *testcase = argv[1];
