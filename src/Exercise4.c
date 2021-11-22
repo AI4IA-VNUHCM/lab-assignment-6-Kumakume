@@ -12,10 +12,11 @@ Ex:
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <stdbool.h>
 
 void Ex4(char *str){
 	//Your codes here
-	
+	printf("This one is already formatted!");
 }
 
 int main(int argc, char *argv[]) {
